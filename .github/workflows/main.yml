@@ -9,8 +9,12 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: Deploy to Production
+        run: curl ${{ secrets.RENDER_DEPLOY_HOOK_URL }}
+
       - name: Checkout repository
         uses: actions/checkout@v4  # Latest stable checkout
+        
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3  # Standard builder setup
