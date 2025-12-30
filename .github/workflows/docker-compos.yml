@@ -1,0 +1,14 @@
+services:
+  app:
+    image: your-docker-username/your-repo-name:latest
+    ports:
+      - "8080:8080"  # Match your app's port
+
+  watchtower:
+    image: containrrr/watchtower
+    container_name: watchtower
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock  # Grants Watchtower control of Docker
+    environment:
+      - WATCHTOWER_POLL_INTERVAL=60  # Checks for updates every 60 seconds
+    restart: always
